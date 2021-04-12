@@ -15,16 +15,16 @@
               style="width: 30rem" >
             <h1 class="text-center pb-5 display-4">Surf Breaks</h1>
             <div class="mb-3">
-                <label for="exampleInputUsername1" class="form-label">Username</label>
-                <input type="text" class="form-control" id="exampleInputUsername1">
+                <label for="username1" class="form-label">Username</label>
+                <input type="text" class="form-control" name="username1" id="username1">
             </div>
             <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1">
+                <label for="password1" class="form-label">Password</label>
+                <input type="password" class="form-control" name="password" id="password1">
             </div>
             <div class="mb-3">
-                <label for="exampleInputPassword2" class="form-label">Confirm Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword2">
+                <label for="password2" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" name="password2" id="password2">
             </div>
             <div class="mb-3 form-check">
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
