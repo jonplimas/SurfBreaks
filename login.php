@@ -1,8 +1,7 @@
 <?php
-
+session_start();
+if (!isset($_SESSION['user_id']) && !isset($_SESSION['user_name'])) { 
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +18,7 @@
               method="post" 
               style="width: 30rem" >
             <h1 class="text-center pb-5 display-4">Surf Breaks</h1>
-            <?php if ($_GET['error']) { ?>
+            <?php if (isset($_GET['error'])) { ?>
                 <div class="alert alert-danger" role="alert">
                     <?=$_GET['error']?>
                 </div>
@@ -47,3 +46,9 @@
 
 </body>
 </html>
+
+<?php 
+}else {
+   header("Location: index.php");
+}
+?>
