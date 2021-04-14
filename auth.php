@@ -38,7 +38,6 @@ if (isset($_POST['login'])) {
 }
 
 if (isset($_POST['register'])) {
-    
     $username = $_POST['username1'];
     $password = $_POST['password1'];
     $password2 = $_POST['password2'];
@@ -59,18 +58,23 @@ if (isset($_POST['register'])) {
             if($password !== $password2){
                 header("Location: login.php?error=Password confirmation does not match");
             } else {
-                //INSERT INTO `Orders` (`OrderID`, `CustomerID`, `Amount`, `Date`) VALUES ('1', '1', '12', '2021-04-13')
-                $query = "INSERT INTO user (userName, userPassword) VALUES (?, ?)";
-                // echo $query;
-                // $result2 = $conn->prepare($query);
-                // $result2->bind_param('ss', $username, $password2);
-                // $result2->execute();
-                if (prepared_query($conn, $query, [$username,$password2])) {
-                    header("Location: login.php?success=Account created successfully");
+                // INSERT INTO `Orders` (`OrderID`, `CustomerID`, `Amount`, `Date`) VALUES ('1', '1', '12', '2021-04-13')
+                // $result2 = 1;
+                $sql = 'INSERT INTO user (userName, userPassword) VALUES (:mName, :mPassword)';
+                $result2 = $conn->prepare($sql);
+                $result2->execute([
+                    'mName' => $username,
+                    'mPassword' => $password2
+                ]);
+                header("Location: login.php?success=Account for $username created successfully");
+                if($result2) {
+                    echo $result2;
+                    
+                    
                 } else {
-                    header("Location: login.php?error=unknown error has occured");
-                    echo 'error';
-                } 
+                    echo "failed to run query";
+                    
+                }
             }
         }
     }

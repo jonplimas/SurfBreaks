@@ -24,7 +24,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['user_name'])) {
                 </div>
               <?php } ?>
             <?php if (isset($_GET['success'])) { ?>
-               <div class="success"><?php echo $_GET['success']; ?></div>
+               <div class="alert alert-info"><?php echo $_GET['success']; ?></div>
             <?php } ?>
             <div class="mb-3">
                 <label for="username1" class="form-label">Username</label>
@@ -37,10 +37,6 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['user_name'])) {
             <div class="mb-3">
                 <label for="password2" class="form-label">Confirm Password <i>(for registration only)</i></label>
                 <input type="password" class="form-control" name="password2" id="password2">
-            </div>
-            <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
             </div>
             <button type="submit" class="btn btn-primary" name="login">Login</button>
             <button type="submit" class="btn btn-secondary" name="register">Register</button>

@@ -1,4 +1,5 @@
 <?php
+    include 'db_conn.php';
     session_start();
     if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 ?>
@@ -19,8 +20,24 @@
         <h2 class="text-center display-6" style="margin-top: -10px;font-size: 1.5rem">Welcome <b><?=$_SESSION['user_name']?></b>!</h2>
     </div>
     
-    <div class="d-flex justify-content-center align-items-center flex-column" style="min-height: 100vh;">
-        <h2 class="text-center display-6" style="margin-top: -15px;font-size: 1.5rem">Welcome <?=$_SESSION['user_name']?>!</h2>
+    <div class="d-flex justify-content-center" style="min-height: 100vh;">
+        <div class="p-5 rounded shadow">
+            <form class="form-horizontal" action="index.php" method="post" style="width: 60rem">
+            <label for="surfList" class="form-label">List Of Surf Spots</label>
+            <input class="form-control" list="datalistOptions" id="surfList" placeholder="Type to search..." style="width: 30rem">
+                <datalist id="datalistOptions">
+                    <?php //get list of surf spots from database
+                        $sql = "SELECT * FROM location";
+                        $data = $conn->query($sql)->fetchAll();
+
+                        foreach($data as $row) {
+                            echo "<option value=\"".$row['break']."\">";
+                        }                    
+                    ?>
+                </datalist>
+                <button type="submit" class="btn btn-primary float-right" name="add">Add to Gallery</button>
+            </form>
+        </div>
     </div>
 </body>
 </html>
