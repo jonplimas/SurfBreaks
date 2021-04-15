@@ -1,5 +1,9 @@
 <?php
     include 'db_conn.php';
+
+    //insert search submission logic here
+
+
     session_start();
     if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 ?>
@@ -26,13 +30,11 @@
             <label for="surfList" class="form-label">List Of Surf Spots</label>
             <input class="form-control" list="datalistOptions" id="surfList" placeholder="Type to search..." style="width: 30rem">
                 <datalist id="datalistOptions">
-                    <?php //get list of surf spots from database
+                    <?php
+                        //get list of surf spots from database
                         $sql = "SELECT * FROM location";
                         $data = $conn->query($sql)->fetchAll();
-
-                        foreach($data as $row) {
-                            echo "<option value=\"".$row['break']."\">";
-                        }                    
+                        foreach($data as $row) { echo "<option value=\"".$row['break']."\">"; }                    
                     ?>
                 </datalist>
                 <button type="submit" class="btn btn-primary float-right" name="add">Add to Gallery</button>
