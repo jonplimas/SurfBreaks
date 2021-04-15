@@ -1,10 +1,8 @@
 <?php
     include 'db_conn.php';
 
-    //insert search submission logic here
-
-
     session_start();
+    $userid = $_SESSION['user_id'];
     if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 ?>
 <!DOCTYPE html>
@@ -49,8 +47,26 @@
             </form>
             <hr>
             <div class="gallery">
-                <a href="">eatmybutt</a>
-                
+                <!-- <a href="">eatmybutt</a> -->
+                <?php
+                    $qry4 = "SELECT * FROM surf_gallery WHERE gallery_owner=?";
+                    $gallery = $qry4->execute([$_SESSION['user_id']])->fetchAll();
+                    
+                    foreach($gallery as $row) {
+                        $fName = $row['forecast_name'];
+                        echo "apple";
+
+
+
+                        
+                        // $qry = "SELECT * FROM forecast WHERE surf_name=?";
+                        // $report = $qry->execute([$fName])->fetchAll();
+                        // foreach($report as $r) {
+                        //     echo $r['surf_report'];
+                        // }                   
+                    }
+                ?>
+                </div>
 
             </div>
         </div>
