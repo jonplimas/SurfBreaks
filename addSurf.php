@@ -2,6 +2,8 @@
 session_start();
 include 'db_conn.php';
 
+$userid = $_SESSION['user_id'];
+
 if (isset($_POST['search'])) {
 
     $beach_name = trim($_POST['surfList']);
@@ -18,25 +20,16 @@ if (isset($_POST['search'])) {
             $surf = $stmt->fetch();
             $name = $surf['break'];
 
-            $sql2 = "INSERT INTO gallery (id, forecast_name) VALUES (:bID, :bName)";
-            $result3 = $conn->prepare($sql2)->execute([
-                'bID'=> $_SESSION['id'],
-                'bName'=> $name
-            ]);
-            header("Location: index.php?success=$name sucessfully added");
-            echo $name;
-            
-
-            // $result3->execute([
-            //     'bID' => $_SESSION['user_id'],
-            //     'bName' => $name
-            // ])
+            $sql = 'INSERT INTO surf_gallery (gallery_owner, forecast_name) VALUES (:mName, :mPassword)';
+                $result2 = $conn->prepare($sql);
+                $result2->execute([
+                    'mName' => $userid,
+                    'mPassword' => $name
+                ]);
             $_SESSION['gallery_insert'] = $name;
-            
+            header("Location: index.php?success=$name successfully added");
         }
     }
-    
-    
 }
 
 ?>
