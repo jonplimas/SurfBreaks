@@ -8,7 +8,7 @@ if (isset($_POST['login'])) {
     $password = $_POST['password1'];
 
     if (empty($username)) {
-        header("Location: login.php?error=Email is required");
+        header("Location: login.php?error=Username is required");
     } else if (empty($password)) {
         header("Location: login.php?error=Password is required to login.");
     } else {

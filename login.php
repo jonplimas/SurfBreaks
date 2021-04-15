@@ -16,7 +16,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['user_name'])) {
         <form class="p-5 rounded shadow"
               action="auth.php"
               method="post" 
-              style="width: 30rem" >
+              style="width: 30rem">
             <h1 class="text-center pb-5 display-4">Surf Breaks</h1>
             <?php if (isset($_GET['error'])) { ?>
                 <div class="alert alert-danger" role="alert">

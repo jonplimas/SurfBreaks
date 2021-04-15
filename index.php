@@ -1,11 +1,15 @@
 <?php
     include 'db_conn.php';
 
-    //insert search submission logic here
+    
 
 
     session_start();
     if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
+        // Gallery 
+        $qry = "SELECT * FROM gallery WHERE gallery_owner=?";
+        $gallery = $conn->query($qry)->fetchAll();
+        
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,6 +43,29 @@
                 </datalist>
                 <button type="submit" class="btn btn-primary float-right" name="add">Add to Gallery</button>
             </form>
+<<<<<<< Updated upstream
+=======
+            <hr>
+            <div class="gallery">
+                <div class="gallery_row">
+                <?php
+                    $counter = 0;
+
+
+
+                    foreach($gallery as $row) {
+                        // echo $row[''];
+                    }
+                
+                ?>
+                </div>
+
+
+
+
+
+            </div>
+>>>>>>> Stashed changes
         </div>
     </div>
 </body>
