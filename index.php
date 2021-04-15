@@ -18,7 +18,7 @@
 </head>
 <body>
     <br>
-    <p align="right"><a href="logout.php" class="btn btn-danger">Logout</a></p>
+    <p align="right"><a href="logout.php" class="btn btn-danger" style="margin-right: 20px">Logout</a></p>
     <div>
         <h1 class="text-center display-3" style="align-left">Surf Breaks</h1>
         <h2 class="text-center display-6" style="margin-top: -10px;font-size: 1.5rem">Welcome <b><?=$_SESSION['user_name']?></b>!</h2>
@@ -45,11 +45,13 @@
                         foreach($data as $row) { echo "<option value=\"".$row['break']."\">"; }                    
                     ?>
                 </datalist>
-                <button type="submit" class="btn btn-primary float-right" name="search">Add to Gallery</button>
+                <button type="submit" class="btn btn-primary float-right" name="search" style="margin-top: 10px">Add to Gallery</button>
             </form>
             <hr>
             <div class="gallery">
                 <a href="">eatmybutt</a>
+                
+
             </div>
         </div>
     </div>
