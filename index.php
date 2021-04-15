@@ -26,9 +26,17 @@
     
     <div class="d-flex justify-content-center" style="min-height: 100vh;">
         <div class="p-5 rounded shadow">
-            <form class="form-horizontal" action="index.php" method="post" style="width: 60rem">
+            <!-- Gallery Insertion Error/Sucess message -->
+            <?php if (isset($_GET['error'])) { ?>
+                <div class="alert alert-danger" role="alert"><?=$_GET['error']?></div>
+            <?php } ?>
+            <?php if (isset($_GET['success'])) { ?>
+                <div class="alert alert-info"><?php echo $_GET['success']; ?></div>
+            <?php } ?>
+            <!-- Gallery Insertion Form -->
+            <form class="form-horizontal" action="addSurf.php" method="post" style="width: 60rem">
             <label for="surfList" class="form-label">List Of Surf Spots</label>
-            <input class="form-control" list="datalistOptions" id="surfList" placeholder="Type to search..." style="width: 30rem">
+            <input class="form-control" list="datalistOptions" id="surfList" name="surfList" placeholder="Type to search..." style="width: 30rem">
                 <datalist id="datalistOptions">
                     <?php
                         //get list of surf spots from database
@@ -37,8 +45,12 @@
                         foreach($data as $row) { echo "<option value=\"".$row['break']."\">"; }                    
                     ?>
                 </datalist>
-                <button type="submit" class="btn btn-primary float-right" name="add">Add to Gallery</button>
+                <button type="submit" class="btn btn-primary float-right" name="search">Add to Gallery</button>
             </form>
+            <hr>
+            <div class="gallery">
+                <a href="">eatmybutt</a>
+            </div>
         </div>
     </div>
 </body>
