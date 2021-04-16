@@ -28,7 +28,7 @@
             <?php if (isset($_GET['error'])) { ?>
                 <div class="alert alert-danger" role="alert"><?=$_GET['error']?></div>
             <?php } ?>
-            <?php if (isset($_GET['success'])) { ?>
+            <?php if (isset($_GET['success']) && $_GET['success'] !=="sort") { ?>
                 <div class="alert alert-info"><?php echo $_GET['success']; ?></div>
             <?php } ?>
             <!-- Gallery Insertion Form -->
@@ -46,19 +46,52 @@
                 <button type="submit" class="btn btn-primary float-right" name="search" style="margin-top: 10px">Add to Gallery</button>
             </form>
             <hr>
+            <!-- Sort dropdown menu -->
+            <div>
+                <form class="form-horizontal" action="index.php?success=sort" method="post" style="margin-bottom: 15px">
+                    <select class="btn btn-light dropdown-toggle shadow" type="submit" name="dropbox" id="dropbox">
+                    <option value="default" <?=$sortValue == 0 ? 'selected="selected"': ''; ?>>Default</option>
+                        <option value="A-Z" <?=$sortValue == 1 ? 'selected="selected"': ''; ?>>A-Z</option>
+                        <option value="Z-A" <?=$sortValue == 2 ? 'selected="selected"': ''; ?>>Z-A</option>
+                    </select>
+                    <button class="btn btn-secondary" type="submit" value="Sort" style="margin-left: 5px">Sort</button>
+                    <input type="hidden" name="name" value="">
+                    <input type="hidden" name="date" value="">
+                </form>
+            </div>
+           
+
+
             <div class="gallery">
                 <!-- <a href="">eatmybutt</a> -->
+                <!-- WIDGET TEST -->
+                <link href="//www.surf-forecast.com/stylesheets/widget.css" media="screen" rel="stylesheet" type="text/css" />
+                <div class="wf-width-cont surf-fc-widget">
+                    <div class="widget-container">
+                        <div class="external-cont">
+                            <iframe class="surf-fc-i" allowtransparency="true" src="//www.surf-forecast.com/breaks/Church/forecasts/widget/a" scrolling="no" frameborder="0" marginwidth="0" marginheight="0"></iframe>
+                            <div class="footer">
+                                <a class="logo" href="//www.surf-forecast.com/"><img src="//www.surf-forecast.com/images/widget.png" alt="Widget" width="1" height="1" /></a>
+                                    <div class="about" id="cmt">
+                                        More <a href="//www.surf-forecast.com/breaks/Church">Detailed Surf Conditions &amp; Webcams for&nbsp;Church</a><nobr>at&nbsp;<a href="//www.surf-forecast.com/">surf-forecast.com</a></nobr>.
+                                    </div>
+                            </div>
+                        </div>
+                     </div>
+                </div>
+
+
                 <?php
                     $qry4 = "SELECT * FROM surf_gallery WHERE gallery_owner=?";
                     $gallery = $qry4->execute([$_SESSION['user_id']])->fetchAll();
+                    $reports= [];
                     
                     foreach($gallery as $row) {
                         $fName = $row['forecast_name'];
-                        echo "apple";
-
-
-
                         
+
+
+
                         // $qry = "SELECT * FROM forecast WHERE surf_name=?";
                         // $report = $qry->execute([$fName])->fetchAll();
                         // foreach($report as $r) {
