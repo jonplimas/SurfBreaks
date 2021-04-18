@@ -1,13 +1,12 @@
 <?php
     include 'db_conn.php';
-
     session_start();
-    $userid = $_SESSION['user_id'];
 
     if(!isset($_SESSION['sort_by'])) {
-        $_SESSION['sort_by'] = $select_qry = "SELECT surf_name, surf_report FROM forecast WHERE surf_name IN (
-            SELECT forecast_name FROM surf_gallery WHERE gallery_owner=:?) ORDER BY surf_name ASC";
+        $_SESSION['sort_by'] = $select_qry = "SELECT surf_name, surf_report FROM forecast ORDER BY surf_name ASC";
     }
+    $userid = $_SESSION['user_id'];
+    echo $userid;
     echo $_SESSION['sort_by'];
 
 
@@ -89,25 +88,21 @@
                      </div>
                 </div>
 
-
+                <a href="index.php">Pineapple</a>
                 <?php
-                    $qry4 = "SELECT * FROM surf_gallery WHERE gallery_owner=?";
-                    $gallery = $qry4->execute([$_SESSION['user_id']])->fetchAll();
-                    $reports= [];
+                    echo "pal";
+                    echo "<br>";
+                    echo "apple";
+                    echo "<br>";
+
+                    $report = $conn->query($_SESSION['sort_by'])->fetchAll();
+                    $filter = $conn->query("SELECT * FROM surf_gallery")->fetchAll();
                     
-                    foreach($gallery as $row) {
-                        $fName = $row['forecast_name'];
-                        
-
-
-
-                        // $qry = "SELECT * FROM forecast WHERE surf_name=?";
-                        // $report = $qry->execute([$fName])->fetchAll();
-                        // foreach($report as $r) {
-                        //     echo $r['surf_report'];
-                        // }                   
-                    }
+                    print_r($report[0]['surf_report']);
+                    
                 ?>
+
+                
                 </div>
 
             </div>
