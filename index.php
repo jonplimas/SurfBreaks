@@ -3,6 +3,15 @@
 
     session_start();
     $userid = $_SESSION['user_id'];
+
+    if(!isset($_SESSION['sort_by'])) {
+        $_SESSION['sort_by'] = $select_qry = "SELECT surf_name, surf_report FROM forecast WHERE surf_name IN (
+            SELECT forecast_name FROM surf_gallery WHERE gallery_owner=:?) ORDER BY surf_name ASC";
+    }
+    echo $_SESSION['sort_by'];
+
+
+
     if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 ?>
 <!DOCTYPE html>
@@ -28,7 +37,7 @@
             <?php if (isset($_GET['error'])) { ?>
                 <div class="alert alert-danger" role="alert"><?=$_GET['error']?></div>
             <?php } ?>
-            <?php if (isset($_GET['success']) && $_GET['success'] !=="sort") { ?>
+            <?php if (isset($_GET['success']) && $_GET['success'] !=="sorted") { ?>
                 <div class="alert alert-info"><?php echo $_GET['success']; ?></div>
             <?php } ?>
             <!-- Gallery Insertion Form -->
