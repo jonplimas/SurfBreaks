@@ -48,13 +48,13 @@
             <hr>
             <!-- Sort dropdown menu -->
             <div>
-                <form class="form-horizontal" action="index.php?success=sort" method="post" style="margin-bottom: 15px">
-                    <select class="btn btn-light dropdown-toggle shadow" type="submit" name="dropbox" id="dropbox">
-                    <option value="default" <?=$sortValue == 0 ? 'selected="selected"': ''; ?>>Default</option>
+                <form class="form-horizontal" action="sortGallery.php" method="post" style="margin-bottom: 15px">
+                    <select class="btn btn-light dropdown-toggle shadow" type="submit" name="dropbox" id="dropbox" onchange="this.form.submit()">
+                        <option value="Default" <?=$sortValue == 0 ? 'selected="selected"': ''; ?>>Sort By:</option>
                         <option value="A-Z" <?=$sortValue == 1 ? 'selected="selected"': ''; ?>>A-Z</option>
                         <option value="Z-A" <?=$sortValue == 2 ? 'selected="selected"': ''; ?>>Z-A</option>
                     </select>
-                    <button class="btn btn-secondary" type="submit" value="Sort" style="margin-left: 5px">Sort</button>
+                    <!-- <button class="btn btn-secondary" type="submit" value="Sort" style="margin-left: 5px">Sort</button> -->
                     <input type="hidden" name="name" value="">
                     <input type="hidden" name="date" value="">
                 </form>
