@@ -88,17 +88,26 @@
                      </div>
                 </div>
 
-                <a href="index.php">Pineapple</a>
                 <?php
-                    echo "pal";
-                    echo "<br>";
-                    echo "apple";
                     echo "<br>";
 
                     $report = $conn->query($_SESSION['sort_by'])->fetchAll();
                     $filter = $conn->query("SELECT * FROM surf_gallery")->fetchAll();
-                    
-                    print_r($report[0]['surf_report']);
+
+                    print_r($filter);
+
+                    $tab = [];
+                    foreach($filter as $i) {
+                        if($i['gallery_owner'] === $userid){
+                            array_push($tab, $i['forecast_name']);
+                        }
+                    }
+
+                    foreach($report as $i) {
+                        if($i['surf_name'] == $tab) {
+                            print_r($i['surf_report']);
+                        }
+                    }
                     
                 ?>
 
