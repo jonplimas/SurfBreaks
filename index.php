@@ -3,14 +3,9 @@
     session_start();
 
     if(!isset($_SESSION['sort_by'])) {
-        $_SESSION['sort_by'] = $select_qry = "SELECT surf_name, surf_report FROM forecast ORDER BY surf_name ASC";
+        $_SESSION['sort_by'] = $select_qry = "SELECT * FROM surf_gallery ORDER BY forecast_name ASC";
     }
     $userid = $_SESSION['user_id'];
-    echo $userid;
-    echo $_SESSION['sort_by'];
-
-
-
     if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 ?>
 <!DOCTYPE html>
@@ -67,21 +62,20 @@
                     <input type="hidden" name="date" value="">
                 </form>
             </div>
-           
-
-
+            
             <div class="gallery">
                 <?php
                     echo "<br>";
 
-                    $report = $conn->query($_SESSION['sort_by'])->fetchAll();
-                    $filter = $conn->query("SELECT * FROM surf_gallery")->fetchAll();
+                    $filter = $conn->query($_SESSION['sort_by'])->fetchAll();
+                    $report = $conn->query("SELECT surf_name, surf_report FROM forecast ORDER BY surf_name ASC")->fetchAll();
                     
                     foreach($filter as $i) {
                         if($i['gallery_owner'] === $userid){
                             foreach($report as $j) {
                                 if($j['surf_name'] === $i['forecast_name']) {
                                     print_r($j['surf_report']);
+                                    echo "<br>";
                                     echo "<br>";
                                 }
                             }

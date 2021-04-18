@@ -46,17 +46,17 @@ if (isset($_POST['dropbox'])) {
     echo '<br>';
 
 
-    $select_qry = "SELECT surf_name, surf_report FROM forecast ORDER BY surf_name ASC";
+    $select_qry = "SELECT * FROM surf_gallery ORDER BY forecast_name ASC";
     if($selectedDropbox != "") {
         switch ($selectedDropbox) {
             case 'Default':
-                $select_qry = "SELECT surf_name, surf_report FROM forecast ORDER BY surf_name ASC";
+                $select_qry = "SELECT * FROM surf_gallery ORDER BY forecast_name ASC";
                 break;
             case 'A-Z':
-                $select_qry = "SELECT surf_name, surf_report FROM forecast ORDER BY surf_name ASC";
+                $select_qry = "SELECT * FROM surf_gallery ORDER BY forecast_name ASC";
                 break;
             case 'Z-A':
-                $select_qry = "SELECT surf_name, surf_report FROM forecast ORDER BY surf_name DESC";
+                $select_qry = "SELECT * FROM surf_gallery ORDER BY forecast_name DESC";
                 break;
         }
     }
